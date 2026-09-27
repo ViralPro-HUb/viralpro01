@@ -1,84 +1,24 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>ViralPro — Deixe seu perfil mais profissional</title>
-    <style>
-        :root { --bg: #030508; --card: #080d16; --line: #121e30; --blue: #168cff; --blue-glow: #00d2ff; --text: #ffffff; --muted: #8ba2c0; }
-        * { box-sizing: border-box; font-family: 'Arial Black', sans-serif; }
-        html { scroll-behavior: smooth; }
-        body { margin: 0; background: radial-gradient(circle at 50% 0, #0a2540 0%, transparent 50%), var(--bg); color: var(--text); overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; }
-        .wrap { max-width: 1200px; margin: auto; padding: 0 20px; }
-        .top-bar { background: linear-gradient(90deg, var(--blue), var(--blue-glow)); color: #000; font-size: 11px; font-weight: 900; text-align: center; padding: 7px 0; text-transform: uppercase; letter-spacing: 1px; }
-        header { position: sticky; top: 0; z-index: 10; background: rgba(3, 5, 8, 0.95); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(22, 140, 255, 0.1); }
-        .nav { height: 85px; display: flex; align-items: center; justify-content: space-between; }
-        .logo-text { font-size: 26px; font-weight: 900; letter-spacing: -1px; font-style: italic; text-transform: uppercase; }
-        .logo-text b { color: var(--blue-glow); }
-        .btn { display: inline-block; padding: 16px 32px; border-radius: 50px; font-weight: 900; text-transform: uppercase; font-style: italic; transition: 0.3s; text-align: center; cursor: pointer; border: none; }
-        .primary { background: linear-gradient(135deg, var(--blue), #0056b3); color: #fff; box-shadow: 0 0 20px rgba(22, 140, 255, 0.4); }
-        .primary:hover { transform: scale(1.03); box-shadow: 0 0 30px rgba(0, 210, 255, 0.7); }
-        .direct-style { background: linear-gradient(90deg, #0052d4, #4364f7, #6fb1fc); box-shadow: 0 0 25px rgba(67, 100, 247, 0.5); font-size: 16px; }
-        .hero { text-align: center; padding: 100px 0 70px; }
-        .side-badges { display: flex; justify-content: space-between; max-width: 900px; margin: 0 auto -20px; font-size: 11px; color: var(--blue-glow); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
-        .hero h1 { font-size: clamp(40px, 6.5vw, 75px); line-height: 0.95; letter-spacing: -2px; margin: 20px auto 25px; text-transform: uppercase; font-style: italic; }
-        .grad { color: transparent; background: linear-gradient(135deg, #fff 40%, var(--blue-glow)); -webkit-background-clip: text; background-clip: text; }
-        .hero p { max-width: 600px; margin: auto; color: var(--muted); font-size: 18px; font-family: sans-serif; line-height: 1.6; }
-        .actions { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 35px; }
-        section { padding: 70px 0; }
-        .section-title { text-align: center; margin-bottom: 50px; }
-        .section-title h2 { font-size: clamp(32px, 5vw, 50px); text-transform: uppercase; font-style: italic; margin: 5px 0; }
-        .section-title p { color: var(--blue-glow); letter-spacing: 3px; text-transform: uppercase; font-size: 12px; }
-        .platform-box { margin-bottom: 60px; }
-        .platform-header { font-size: 22px; text-transform: uppercase; font-style: italic; border-left: 5px solid var(--blue); padding-left: 15px; margin-bottom: 35px; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
-        .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 35px 26px; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
-        .card:hover { border-color: var(--blue); transform: translateY(-5px); box-shadow: 0 12px 30px rgba(22, 140, 255, 0.15); }
-        .card-top h3 { font-size: 24px; margin: 0 0 12px; text-transform: uppercase; font-style: italic; }
-        .card-top p { color: var(--muted); font-family: sans-serif; font-size: 14px; margin: 0; line-height: 1.6; }
-        .card-price { margin: 30px 0 25px; padding-top: 20px; border-top: 1px solid rgba(22, 140, 255, 0.1); }
-        .card-price span { font-size: 11px; color: var(--muted); text-transform: uppercase; font-family: sans-serif; display: block; }
-        .card-price strong { font-size: 38px; color: #fff; display: block; margin-top: 4px; }
-        .card-price strong b { color: var(--blue-glow); font-size: 20px; }
-        .btn-buy { width: 100%; padding: 14px; font-size: 14px; border-radius: 8px; }
-        .cta-section { background: radial-gradient(circle at 50% 50%, rgba(22, 140, 255, 0.15), transparent 70%), #060b12; border: 1px solid var(--line); border-radius: 16px; padding: 70px 40px; text-align: center; margin-top: 40px; }
-        .cta-section h2 { font-size: 38px; text-transform: uppercase; font-style: italic; margin-bottom: 15px; }
-        .cta-section p { font-family: sans-serif; color: var(--muted); max-width: 600px; margin: 0 auto 35px; line-height: 1.6; }
-        .trust-bar { display: flex; justify-content: center; gap: 40px; margin-top: 50px; flex-wrap: wrap; border-top: 1px solid rgba(22, 140, 255, 0.1); padding-top: 35px; }
-        .trust-item { display: flex; align-items: center; gap: 10px; font-family: sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; }
-        footer { border-top: 1px solid rgba(22, 140, 255, 0.05); padding: 40px 0; text-align: center; color: var(--muted); font-family: sans-serif; font-size: 13px; }
-        @media(max-width: 768px) { .side-badges { display: none; } .hero h1 { letter-spacing: -1px; } .hero { padding: 60px 0 40px; } .trust-bar { gap: 20px; flex-direction: column; align-items: center; } .cta-section { padding: 40px 20px; } }
-    </style>
-</head>
-<body>
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ViralPro — Deixe seu perfil mais profissional</title><style>
+:root { --bg: #030508; --card: #080d16; --line: #121e30; --blue: #168cff; --blue-glow: #00d2ff; --text: #ffffff; --muted: #8ba2c0; }*{ box-sizing: border-box; font-family: 'Arial Black', sans-serif; }html { scroll-behavior: smooth; }body { margin: 0; background: radial-gradient(circle at 50% 0, #0a2540 0%, transparent 50%), var(--bg); color: var(--text); overflow-x: hidden; }a { text-decoration: none; color: inherit; }.wrap { max-width: 1200px; margin: auto; padding: 0 20px; }.top-bar { background: linear-gradient(90deg, var(--blue), var(--blue-glow)); color: #000; font-size: 11px; font-weight: 900; text-align: center; padding: 7px 0; text-transform: uppercase; letter-spacing: 1px; }header { position: sticky; top: 0; z-index: 10; background: rgba(3, 5, 8, 0.95); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(22, 140, 255, 0.1); }.nav { height: 85px; display: flex; align-items: center; justify-content: space-between; }.logo-text { font-size: 26px; font-weight: 900; letter-spacing: -1px; font-style: italic; text-transform: uppercase; }.logo-text b { color: var(--blue-glow); }.btn { display: inline-block; padding: 16px 32px; border-radius: 50px; font-weight: 900; text-transform: uppercase; font-style: italic; transition: 0.3s; text-align: center; cursor: pointer; border: none; }.primary { background: linear-gradient(135deg, var(--blue), #0056b3); color: #fff; box-shadow: 0 0 20px rgba(22, 140, 255, 0.4); }.primary:hover { transform: scale(1.03); box-shadow: 0 0 30px rgba(0, 210, 255, 0.7); }.direct-style { background: linear-gradient(90deg, #0052d4, #4364f7, #6fb1fc); box-shadow: 0 0 25px rgba(67, 100, 247, 0.5); font-size: 16px; }.hero { text-align: center; padding: 100px 0 70px; }.side-badges { display: flex; justify-content: space-between; max-width: 900px; margin: 0 auto -20px; font-size: 11px; color: var(--blue-glow); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }.hero h1 { font-size: clamp(40px, 6.5vw, 75px); line-height: 0.95; letter-spacing: -2px; margin: 20px auto 25px; text-transform: uppercase; font-style: italic; }.grad { color: transparent; background: linear-gradient(135deg, #fff 40%, var(--blue-glow)); -webkit-background-clip: text; background-clip: text; }.hero p { max-width: 600px; margin: auto; color: var(--muted); font-size: 18px; font-family: sans-serif; line-height: 1.6; }section { padding: 70px 0; }.section-title { text-align: center; margin-bottom: 30px; }.section-title h2 { font-size: clamp(32px, 5vw, 50px); text-transform: uppercase; font-style: italic; margin: 5px 0; }.section-title p { color: var(--blue-glow); letter-spacing: 3px; text-transform: uppercase; font-size: 12px; }.tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }.tab-btn { background: var(--card); border: 1px solid var(--line); color: var(--muted); padding: 12px 24px; border-radius: 30px; font-size: 13px; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.2s; }.tab-btn.active, .tab-btn:hover { background: var(--blue); color: #fff; border-color: var(--blue-glow); box-shadow: 0 0 15px rgba(22, 140, 255, 0.4); }.tab-content { display: none; }.tab-content.active { display: block; }.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 25px 20px; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }.card:hover { border-color: var(--blue); transform: translateY(-5px); box-shadow: 0 12px 30px rgba(22, 140, 255, 0.15); }.card-top h3 { font-size: 20px; margin: 0 0 8px; text-transform: uppercase; font-style: italic; }.card-top p { color: var(--muted); font-family: sans-serif; font-size: 13px; margin: 0; line-height: 1.4; }.card-price { margin: 15px 0 15px; padding-top: 10px; border-top: 1px solid rgba(22, 140, 255, 0.1); }.card-price span { font-size: 11px; color: var(--muted); text-transform: uppercase; font-family: sans-serif; display: block; }.card-price strong { font-size: 32px; color: #fff; display: block; margin-top: 2px; }.card-price strong b { color: var(--blue-glow); font-size: 18px; }.btn-buy { width: 100%; padding: 12px; font-size: 13px; border-radius: 8px; }.cta-section { background: radial-gradient(circle at 50% 50%, rgba(22, 140, 255, 0.15), transparent 70%), #060b12; border: 1px solid var(--line); border-radius: 16px; padding: 70px 40px; text-align: center; margin-top: 40px; }.cta-section h2 { font-size: 38px; text-transform: uppercase; font-style: italic; margin-bottom: 15px; }.cta-section p { font-family: sans-serif; color: var(--muted); max-width: 600px; margin: 0 auto 35px; line-height: 1.6; }.trust-bar { display: flex; justify-content: center; gap: 40px; margin-top: 50px; flex-wrap: wrap; border-top: 1px solid rgba(22, 140, 255, 0.1); padding-top: 35px; }.trust-item { display: flex; align-items: center; gap: 10px; font-family: sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; }footer { border-top: 1px solid rgba(22, 140, 255, 0.05); padding: 40px 0; text-align: center; color: var(--muted); font-family: sans-serif; font-size: 13px; }@media(max-width: 768px) { .side-badges { display: none; } .hero h1 { letter-spacing: -1px; } .hero { padding: 60px 0 40px; } .trust-bar { gap: 20px; flex-direction: column; align-items: center; } .cta-section { padding: 40px 20px; } }
+</style></head><body>
     <div class="top-bar">⚡ PREÇOS DE ATACADO DIRETO NO ATENDIMENTO ⚡</div>
     <header><div class="wrap nav"><a href="#"><div class="logo-text">Viral<b>Pro</b></div></a><a class="btn primary" style="padding:10px 24px;font-size:12px;border-radius:30px;" href="#servicos">VER TABELA</a></div></header>
-    <main class="wrap">
-        <section class="hero">
-            <div class="side-badges"><span>⚡ MAIS ENGAJAMENTO PARA O SEU CONTEÚDO</span><span>SEU PERFIL COM MAIS ALCANCE ⚡</span></div>
-            <h1>DEIXE SEU PERFIL<br><span class="grad">MAIS PROFISSIONAL.</span></h1>
-            <p>Impulsione seus números nas redes sociais hoje mesmo. Entrega rápida, garantida e com o suporte que você precisa.</p>
-            <div class="actions"><a class="btn primary direct-style" href="https://ig.me" target="_blank">✈️ CHAME NO DIRECT</a></div>
-        </section>
-        <section id="servicos">
-            <div class="section-title"><p>TABELA DE PREÇOS OFICIAL</p><h2>CONSULTE NOSSOS PACOTES</h2></div>
-            <div class="platform-box">
-                <div class="platform-header">📸 PACOTES INSTAGRAM</div>
-                <div class="services-grid">
-                    <div class="card"><div class="card-top"><h3>Seguidores BR</h3><p>Contas brasileiras de alta qualidade para construir autoridade máxima.</p></div><div><div class="card-price"><span>A partir de</span><strong>R$ 29,<b>90</b></strong></div><a class="btn primary btn-buy" href="https://ig.me" target="_blank">Pedir no Direct</a></div></div>
-                    <div class="card"><div class="card-top"><h3>Seguidores Mistos</h3><p>Excelente para quem busca dar um grande volume bruto investindo muito pouco.</p></div><div><div class="card-price"><span>A partir de</span><strong>R$ 19,<b>90</b></strong></div><a class="btn primary btn-buy" href="https://ig.me" target="_blank">Pedir no Direct</a></div></div>
-                    <div class="card"><div class="card-top"><h3>Curtidas BR</h3><p>Interações reais de perfis brasileiros para engajar suas postagens.</p></div><div><div class="card-price"><span>A partir de</span><strong>R$ 12,<b>90</b></strong></div><a class="btn primary btn-buy" href="https://ig.me" target="_blank">Pedir no Direct</a></div></div>
-                    <div class="card"><div class="card-top"><h3>Curtidas Mistas</h3><p>Alavanque o engajamento visual dos seus posts rapidamente.</p></div><div><div class="card-price"><span>A partir de</span><strong>R$ 9,<b>90</b></strong></div><a class="btn primary btn-buy" href="https://ig.me" target="_blank">Pedir no Direct</a></div></div>
-                </div>
+    <main class="wrap"><section class="hero"><div class="side-badges"><span>⚡ MAIS ENGAJAMENTO PARA O SEU CONTEÚDO</span><span>SEU PERFIL COM MAIS ALCANCE ⚡</span></div><h1>DEIXE SEU PERFIL<br><span class="grad">MAIS PROFISSIONAL.</span></h1><p>Impulsione seus números nas redes sociais hoje mesmo. Entrega rápida, garantida e com o suporte que você precisa.</p><div class="actions"><a class="btn primary direct-style" href="https://ig.me" target="_blank">✈️ CHAME NO DIRECT</a></div></section>
+        <section id="servicos"><div class="section-title"><p>TABELA DE PREÇOS OFICIAL</p><h2>CONSULTE NOSSOS PACOTES</h2></div>
+            <div class="tabs">
+                <button class="tab-btn active" onclick="openTab('ins-seg')">📸 INSTA SEGUIDORES</button>
+                <button class="tab-btn" onclick="openTab('ins-curt')">❤️ INSTA CURTIDAS</button>
+                <button class="tab-btn" onclick="openTab('tk-all')">🎵 PACOTES TIKTOK</button>
             </div>
-            <div class="platform-box">
-                <div class="platform-header">🎵 PACOTES TIKTOK</div>
-                <div class="services-grid">
-                    <div class="card"><div class="card-top"><h3>Seguidores BR</h3><p>Alcance os requisitos mínimos para liberar lives e links comerciais.</p></div><div><div class="card-price"><span>A partir de</span><strong>R$ 29,<b>90</b></strong></div><a class="btn primary btn-buy" href="https://ig.me" target="_blank">Pedir no Direct</a></div></div>
-                    <div class="card"><div class="card-top"><h3>Curtidas Reais</h3><p>Mostre para o algoritmo do TikTok que seu conteúdo é relevante.</p></div><div><div class="card-price"><span>A partir de</span><strong>R$ 9,<b>90</b></strong></div><a class="btn primary btn-buy" href="https://ig.me" target="_blank">Pedir no Direct</a></div></div>
-                    <div class="card"><div class="card-top"><h3>Visualizações</h3><p>Turbine suas views e aumente as chances de parar na For You.</p></div><div><div class="card-price"><span>A partir de</span><strong>R$ 19,<b>90</b></strong></div><a class="btn primary btn-buy" href="https://ig.me" target="_blank">Pedir no Direct</a></div></div>
-                </div>
-            </div>
-            <div class="cta-section">
-                <h2>NÃO ACHOU O QUE PROCURAVA?</h2>
+            <!-- Aba Insta Seguidores -->
+            <div id="ins-seg" class="tab-content active"><div class="services-grid">
+                <div class="card"><div class="card-top"><h3>300 SEGUIDORES BR</h3><p>Perfis brasileiros premium ideais para credibilidade.</p></div><div><div class="card-price"><span>Pacote</span><strong>R$ 29,<b>90</b></strong></div><a class="btn primary btn-buy" href="https://ig.me?text=Quero+300+Seguidores+BR+Insta" target="_blank">Pedir no Direct</a></div></div>
+                <div class="card"><div class="card-top"><h3>1.000 SEGUIDORES BR</h3><p>Crescimento orgânico simulado com contas brasileiras.</p></div><div><div class="card-price"><span>Pacote</span><strong>R$ 69,<b>90</b></strong></div><a class="btn primary btn-buy" href="https://ig.me?text=Quero+1000+Seguidores+BR+Insta" target="_blank">Pedir no Direct</a></div></div>
+                <div class="card"><div class="card-top"><h3>5.000 SEGUIDORES BR</h3><p>Alavanque o tamanho do seu perfil com autoridade máxima.</p></div><div><div class="card-price"><span>Pacote</span><strong>R$ 249,<b>90</b></strong></div><a class="btn primary btn-buy" href="https://ig.me?text=Quero+5000+Seguidores+BR+Insta" target="_blank">Pedir no Direct</a></div></div>
+                <div class="card"><div class="card-top"><h3>300 SEGUIDORES MISTOS</h3><p>Volume rápido e extremamente econômico.</p></div><div><div class="card-price"><span>Pacote</span><strong>R$ 19,<b>90</b></strong></div><a class="btn primary btn-buy" href="https://ig.me?text=Quero+300+Seguidores+Mistos+Insta" target="_blank">Pedir no Direct</a></div></div>
+                <div class="card"><div class="card-top"><h3>1.000 SEGUIDORES MISTOS</h3><p>Dar volume bruto ao contador investindo muito pouco.</p></div><div><div class="card-price"><span>Pacote</span><strong>R$ 39,<b>90</b></strong></div><a class="btn primary btn-buy" href="https://ig.me?text=Quero+1000+Seguidores+Mistos+Insta" target="_blank">Pedir no Direct</a></div></div>
+                <div class="card"><div class="card-top"><h3>5.000 SEGUIDORES MISTOS</h3><p>Grande lote de perfis mundiais mistos.</p></div><div><div class="card-price"><span>Pacote</span><strong>R$ 129,<b>90</b></strong></div><a class="btn primary btn-buy" href="https://ig.me?text=Quero+5000+Seguidores+Mistos+Insta" target="_blank">Pedir no Direct</a></div></div>
+            </div></div>
+            <!-- Aba Insta Curtidas -->
+            <div id="ins-curt" class="tab-content"><div class="services-grid">
+                <div class="card"><div class="card-top"><h3>100 CURTIDAS BR</h3><p>Interações reais de perfis brasileiros nas suas fotos.</p></div><div><div class="card-price"><span>Pacote</span><strong>R$ 12,<b>90</b></strong></div><a class="btn primary btn-buy" href="https://ig.me?text=Quero+100+Curtidas+BR+Insta" target="_blank">Pedir no Direct</a></div></div>
